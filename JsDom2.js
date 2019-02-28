@@ -1,6 +1,10 @@
 arr_obj = [];
 function add() {
 
+    let clicked = document.getElementById('div_id');
+    if (!!clicked) {
+        clicked.remove();
+    }
 
     var seconddiv = document.createElement('div');
     seconddiv.setAttribute('id', 'div_id');
