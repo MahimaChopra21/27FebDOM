@@ -43,17 +43,17 @@ function add() {
 
 }
 
-
 function addItem() {
     arr_obj.push({ "date": document.getElementById('date').value, "discription": document.getElementById('descript').value });
-    
     let previousTable = document.getElementById('table1');
     if (!!previousTable) {
         previousTable.remove();
     }
     
+    
     var table = document.createElement('table');
     table.border = "1";
+    table.setAttribute('id','table1')
     var header = Object.keys(arr_obj[0]);
     var tr = document.createElement('tr');
     for (var index = 0; index < header.length; index++) {
@@ -63,11 +63,12 @@ function addItem() {
     }
     table.appendChild(tr);
 
-
-
+    
+     var count=0;
+     
     for (let index = 0; index < arr_obj.length; index++) {
         var tr = document.createElement('tr');
-        tr.setAttribute('id', 'row');
+        tr.setAttribute('id', 'row'+ count);
         for (let count = 0; count < header.length; count++) {
             var td = document.createElement('td');
             td.innerHTML = arr_obj[index][header[count]];
@@ -80,19 +81,22 @@ function addItem() {
         var btn_text3 = document.createTextNode("Remove");
         delete_this.appendChild(btn_text3);
         delete_this.setAttribute('id', 'delete_this')
+        delete_this.setAttribute('onclick','removerow(row'+count+')');
         tr.appendChild(delete_this);
         table.appendChild(tr);
+        count++;
+
+        
     }
-
-
-
     document.body.appendChild(table);
-    document.getElementById("delete_this").addEventListener('click', function (event) {
-        var rows = document.getElementById("row");
-        rows.remove();
-    });
-
+  
+    
 
 }
+function removerow(param)
+     {
+         param.remove();
+     }
+   
 
 
