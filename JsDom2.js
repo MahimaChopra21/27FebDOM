@@ -44,13 +44,14 @@ function add() {
 }
 
 
-
-
-
-
-
 function addItem() {
     arr_obj.push({ "date": document.getElementById('date').value, "discription": document.getElementById('descript').value });
+    
+    let previousTable = document.getElementById('table1');
+    if (!!previousTable) {
+        previousTable.remove();
+    }
+    
     var table = document.createElement('table');
     table.border = "1";
     var header = Object.keys(arr_obj[0]);
